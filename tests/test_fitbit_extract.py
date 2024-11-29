@@ -1,4 +1,4 @@
-import fitbit_extract
+import fitbit_data_analysis as fda
 from pathlib import Path
 import pytest
 
@@ -7,7 +7,8 @@ def test_extract_multiple_files():
     """
     Expects data from 'weight-*.json' files.
     """
-    actual_df = fitbit_extract.read_files(
+
+    actual_df = fda.read_files(
         global_export_data_dir_name=Path("./tests/test_data/extractable_data/"),
         file_prefix="weight-",
         file_suffix=".json",
@@ -21,8 +22,9 @@ def test_file_not_found():
     """
     Expects FileNotFoundError due to non-existent directory.
     """
+
     with pytest.raises(FileNotFoundError):
-        fitbit_extract.read_files(
+        fda.read_files(
             global_export_data_dir_name=Path(
                 "./tests/test_data/non_existent_directory/"
             ),
@@ -35,7 +37,8 @@ def test_unmatched_file_type():
     """
     Expects None is returned, because there are no matching files in the given directory.
     """
-    actual_df = fitbit_extract.read_files(
+
+    actual_df = fda.read_files(
         global_export_data_dir_name=Path("./tests/test_data/extractable_data/"),
         file_prefix="weight-",
         file_suffix=".unknown",
@@ -47,7 +50,8 @@ def test_read_complicated_structure():
     """
     Expects read into Polars DataFrame, even though a column contains complex structures.
     """
-    actual_df = fitbit_extract.read_files(
+
+    actual_df = fda.read_files(
         global_export_data_dir_name=Path("./tests/test_data/extractable_data/"),
         file_prefix="heart_rate-",
         file_suffix=".json",
