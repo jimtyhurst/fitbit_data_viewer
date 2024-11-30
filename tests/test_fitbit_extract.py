@@ -9,15 +9,13 @@ def test_extract_multiple_files():
     """
 
     actual_df = fdv.read_files(
-        global_export_data_dir_name=Path(".").joinpath(
-            "tests", "test_data", "extractable_data"
-        ),
-        file_prefix="weight-",
-        file_suffix=".json",
+        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        file_prefix='weight-',
+        file_suffix='.json',
     )
     assert actual_df.shape[0] == 42
     assert actual_df.shape[1] == 6
-    assert actual_df.columns == ["logId", "weight", "bmi", "date", "time", "source"]
+    assert actual_df.columns == ['logId', 'weight', 'bmi', 'date', 'time', 'source']
 
 
 def test_file_not_found():
@@ -27,11 +25,11 @@ def test_file_not_found():
 
     with pytest.raises(FileNotFoundError):
         fdv.read_files(
-            global_export_data_dir_name=Path(".").joinpath(
-                "tests", "test_data", "non_existent_directory"
+            global_export_data_dir_name=Path('.').joinpath(
+                'tests', 'test_data', 'non_existent_directory'
             ),
-            file_prefix="weight-",
-            file_suffix=".inaccessible",
+            file_prefix='weight-',
+            file_suffix='.inaccessible',
         )
 
 
@@ -41,11 +39,9 @@ def test_unmatched_file_type():
     """
 
     actual_df = fdv.read_files(
-        global_export_data_dir_name=Path(".").joinpath(
-            "tests", "test_data", "extractable_data"
-        ),
-        file_prefix="weight-",
-        file_suffix=".unknown",
+        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        file_prefix='weight-',
+        file_suffix='.unknown',
     )
     assert actual_df is None
 
@@ -56,16 +52,11 @@ def test_read_complicated_structure():
     """
 
     actual_df = fdv.read_files(
-        global_export_data_dir_name=Path(".").joinpath(
-            "tests", "test_data", "extractable_data"
-        ),
-        file_prefix="heart_rate-",
-        file_suffix=".json",
+        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        file_prefix='heart_rate-',
+        file_suffix='.json',
     )
-    assert actual_df.columns == ["dateTime", "value"]
-    assert isinstance(actual_df["value"][0], dict)
-    assert actual_df["value"][0]["bpm"] > 0
-    assert (
-        actual_df["value"][0]["confidence"] >= 0
-        and actual_df["value"][0]["confidence"] <= 1
-    )
+    assert actual_df.columns == ['dateTime', 'value']
+    assert isinstance(actual_df['value'][0], dict)
+    assert actual_df['value'][0]['bpm'] > 0
+    assert actual_df['value'][0]['confidence'] >= 0 and actual_df['value'][0]['confidence'] <= 1
