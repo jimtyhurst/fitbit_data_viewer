@@ -34,12 +34,12 @@ dev = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "fitbit_data_viewer"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
 
 [tool.pytest.ini_options]
 pythonpath = [
-  "src"
+  "."
 ]

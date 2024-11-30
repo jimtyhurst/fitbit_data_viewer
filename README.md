@@ -1,32 +1,51 @@
-# fitbit-dashboard
+# fitbit_data_viewer
 
-Applications for extracting and displaying [Fitbit](https://fitbit.com) data, providing views that are not available in the standard [Google Fitbit phone app](https://apps.apple.com/us/app/fitbit-health-fitness/id462638897).
+Python modules and scripts for extracting and displaying [Fitbit](https://fitbit.com) data, providing views that are not available in the standard [Google Fitbit phone app](https://apps.apple.com/us/app/fitbit-health-fitness/id462638897).
 
 **Contents**
 
 - [Overview](#overview)
-  - [Data flow](#data-flow)
+  - [Application workflow](#application-workflow)
   - [Data priorities](#data-priorities)
 - [License](#license)
 
 ## Overview
 
-### Data flow
+### Application workflow
 
-1. Export data from FitBit.
-2. Upload the raw data to Google Cloud Storage (GCS).
-3. Transform JSON files into Polars Dataframes.
-4. Save the transformed data to Parquet files in GCS.
-5. Summarize some of the data. For example,
+#### Minimum Viable Product (MVP) goals
+
+Theme: Plot weight trend over time.
+
+1. _Extract_ data from FitBit.
+  * Fitbit subscriber downloads their own data manually.
+  * See the Fitbit support article, [How do I export my Fitbit data?](https://support.google.com/fitbit/answer/14236615), for instructions.
+  * This export process results in a very large number of JSON files on your local machine.
+2. _Transform_ the raw JSON files.
+  * Manage the data as [Polars DataFrames](https://docs.pola.rs/user-guide/concepts/data-types-and-structures/#dataframe).
+  * Transform only weight-related files.
+  * Change date fields from strings to date objects.
+  * Save only one weight measurement per day.
+  * Save the transformed data to [Parquet](https://parquet.apache.org/) files on your local file system.
+3. Generate a plot of weight over time for a user-definable time period.
+4. Deploy a dashboard to enable the user to specify a time period, then display the resulting plot.
+
+#### Longer term workflow goals
+
+1. _Extract_ data from FitBit.
+  * Upload the raw data to [Google Cloud Storage](https://cloud.google.com/storage) (GCS).
+2. _Transform_ the raw JSON files.
+  * Save the transformed data to [Parquet](https://parquet.apache.org/) files in GCS.
+3. Summarize some of the data. For example,
   * Per week: Average calories per day.
   * Per week: Total elapsed minutes of exercise for exercise of at least 30 minutes.
   * Per week: Total Zone Minutes for exercise of at least 30 minutes.
-6. Plot some of the data.
+4. Plot some of the data.
   * Individual features.
   * Correlation of features, e.g. elapsed exercise minutes vs weight.
-7. Display the analysis in a web app.
+5. Display the analysis in a web app dashboard.
 
-### Data priorities
+### TODO: Data priorities
 
 1. Day: Weight.
 1. Week/month: Average weight.
