@@ -391,7 +391,7 @@ wheels = [
 ]
 
 [[package]]
-name = "fitbit-dashboard"
+name = "fitbit-data-viewer"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

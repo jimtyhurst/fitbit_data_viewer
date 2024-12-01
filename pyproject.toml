@@ -1,5 +1,5 @@
 [project]
-name = "fitbit-dashboard"
+name = "fitbit_data_viewer"
 version = "0.1.0"
 description = "Applications for extracting and displaying Fitbit data, providing views that are not available in the standard phone app."
 authors = [
@@ -21,8 +21,8 @@ dependencies = [
 ]
 
 [project.urls]
-"Source" = "https://github.com/jimtyhurst/fitbit-dashboard.git"
-"Bug Tracker" = "https://github.com/jimtyhurst/fitbit-dashboard/issues"
+"Source" = "https://github.com/jimtyhurst/fitbit_data_viewer.git"
+"Bug Tracker" = "https://github.com/jimtyhurst/fitbit_data_viewer/issues"
 
 [dependency-groups]
 dev = [
