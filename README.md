@@ -82,15 +82,20 @@ To set up the development environment:
     # Creates a virtual environment whose name defaults to
     # `fitbit_data_viewer`, i.e. the project name.
     uv venv
+    # Activates the virtual environment in the current shell instance.
+    source .venv/bin/activate
     # Installs package dependencies into the virtual environment.
     uv sync
     ```
     The package dependencies are listed in [pyproject.toml](./pyproject.toml) and the full set of transitive dependencies is saved in [uv.lock](./uv.lock).
-1. If you plan to use a Jupyter notebook to explore this package, add the new virtual environment to the Jupyter kernels:
-    ```
-    python -m ipykernel install --user --name=fitbit_data_viewer
-    ```
-    where 'fitbit_data_viewer' is the name of the project _and_ the name of the virtual environment.
+1. If you plan to use a Jupyter notebook to explore this package:
+    1. Add the new virtual environment to the Jupyter kernels:
+        ```
+        python -m ipykernel install --user --name=fitbit_data_viewer
+        ```
+        where 'fitbit_data_viewer' is the name of the project _and_ the name of the virtual environment.
+    1. Set up a `.env` file to define environment variables for the directories in your local workspace to hold data. Use the [env.example](./notebooks/env.example) file as a template for your `.env` file.
+    1. You can see how the `.env` file is used in the [fitbit-weight-eda.ipynb](./notebooks/fitbit-weight-eda.ipynb) notebook.
 
 ## Suggestions for developers
 
