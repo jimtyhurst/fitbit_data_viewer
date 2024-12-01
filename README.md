@@ -109,7 +109,7 @@ To set up the development environment:
     ```
 1. If you make any changes to the code, make sure that the unit tests still pass.
     ```
-    uv run pytest
+    uv run pytest -s
     ```
 1. To build the package:
     ```

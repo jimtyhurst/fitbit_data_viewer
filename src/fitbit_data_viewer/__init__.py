@@ -2,6 +2,10 @@ from pathlib import Path
 import polars as pl
 
 
+FITBIT_DATE_FORMAT = '%m/%d/%y'
+ISO_8601_DATE_FORMAT = '%Y-%m-%d'
+
+
 def read_raw_files(
     global_export_data_dir_name: Path, file_prefix: str, file_suffix: str
 ) -> pl.DataFrame | None:
@@ -24,3 +28,17 @@ def read_raw_files(
             entry_as_df = pl.read_json(global_export_data_dir_name.joinpath(entry.name))
             df = entry_as_df if df is None else df.vstack(entry_as_df)
     return df
+
+
+def date_string_to_date_object(df: pl.DataFrame) -> pl.DataFrame:
+    tx_df = df.with_columns(
+        [
+            pl.col('date').str.strptime(
+                pl.Date,
+                format=FITBIT_DATE_FORMAT,
+                strict=False,
+                # ).alias('date_object')
+            )
+        ]
+    )
+    return tx_df
