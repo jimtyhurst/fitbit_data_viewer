@@ -2,7 +2,7 @@ from pathlib import Path
 import polars as pl
 
 
-def read_files(
+def read_raw_files(
     global_export_data_dir_name: Path, file_prefix: str, file_suffix: str
 ) -> pl.DataFrame | None:
     """
