@@ -8,6 +8,11 @@ on:
     branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        required: false
+        default: 'debug'
 
 permissions:
   contents: read
