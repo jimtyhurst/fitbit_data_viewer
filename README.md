@@ -9,6 +9,7 @@ This project provides Python modules and scripts for extracting and displaying [
   - [Data priorities](#data-priorities)
 - [Getting started](#getting-started)
 - [Suggestions for developers](#suggestions-for-developers)
+- [Design decisions](#design-decisions)
 - [License](#license)
 
 ## Overview
@@ -115,6 +116,10 @@ To set up the development environment:
     ```
     uv build
     ```
+
+## Design decisions
+
+- See the [tools.md](./docs/tools.md) document for a brief discussion of the selection of packages and tools for this project.
 
 ## License
 
