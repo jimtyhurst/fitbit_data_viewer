@@ -39,7 +39,7 @@ jobs:
       run: uv sync --all-extras --dev
 
     - name: Lint
-      run: ruff check --output-format=github .
+      run: uv run ruff check --output-format=github .
 
     - name: Unit tests
       run: uv run pytest -s
