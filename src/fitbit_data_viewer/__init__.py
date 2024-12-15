@@ -29,7 +29,9 @@ def read_raw_files(
             and entry.name.endswith(file_suffix)
             and entry.is_file()
         ):
-            entry_as_df = pl.read_json(global_export_data_dir_name.joinpath(entry.name))
+            entry_as_df = pl.read_json(
+                global_export_data_dir_name.joinpath(entry.name)
+            )
             df = entry_as_df if df is None else df.vstack(entry_as_df)
     return df
 

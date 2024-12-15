@@ -9,13 +9,22 @@ def test_extract_multiple_files():
     """
 
     actual_df = fdv.read_raw_files(
-        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        global_export_data_dir_name=Path('.').joinpath(
+            'tests', 'test_data', 'extractable_data'
+        ),
         file_prefix='weight-',
         file_suffix='.json',
     )
     assert actual_df.shape[0] == 42
     assert actual_df.shape[1] == 6
-    assert actual_df.columns == ['logId', 'weight', 'bmi', 'date', 'time', 'source']
+    assert actual_df.columns == [
+        'logId',
+        'weight',
+        'bmi',
+        'date',
+        'time',
+        'source',
+    ]
 
 
 def test_file_not_found():
@@ -35,11 +44,14 @@ def test_file_not_found():
 
 def test_unmatched_file_type():
     """
-    Expects None is returned, because there are no matching files in the given directory.
+    Expects None is returned, because there are no matching files in the given
+    directory.
     """
 
     actual_df = fdv.read_raw_files(
-        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        global_export_data_dir_name=Path('.').joinpath(
+            'tests', 'test_data', 'extractable_data'
+        ),
         file_prefix='weight-',
         file_suffix='.unknown',
     )
@@ -48,15 +60,21 @@ def test_unmatched_file_type():
 
 def test_read_complicated_structure():
     """
-    Expects read into Polars DataFrame, even though a column contains complex structures.
+    Expects read into Polars DataFrame, even though a column contains complex
+    structures.
     """
 
     actual_df = fdv.read_raw_files(
-        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        global_export_data_dir_name=Path('.').joinpath(
+            'tests', 'test_data', 'extractable_data'
+        ),
         file_prefix='heart_rate-',
         file_suffix='.json',
     )
     assert actual_df.columns == ['dateTime', 'value']
     assert isinstance(actual_df['value'][0], dict)
     assert actual_df['value'][0]['bpm'] > 0
-    assert actual_df['value'][0]['confidence'] >= 0 and actual_df['value'][0]['confidence'] <= 1
+    assert (
+        actual_df['value'][0]['confidence'] >= 0
+        and actual_df['value'][0]['confidence'] <= 1
+    )
