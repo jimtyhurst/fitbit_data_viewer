@@ -3,7 +3,16 @@
 
 name: Python application
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: []
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        required: false
+        default: 'debug'
 
 permissions:
   contents: read
@@ -24,13 +33,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version-file: ".python-version"
+        python-version: ".python-version"
 
     - name: Install Python package dependencies for this app
       run: uv sync --all-extras --dev
 
     - name: Lint
-      run: uv run ruff check --output-format=github .
+      run: ruff check --output-format=github .
 
     - name: Unit tests
       run: uv run pytest -s
