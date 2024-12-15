@@ -7,7 +7,9 @@ def test_date_string_to_date_object_replace_column():
     Expects 'date' column to be converted from string to date object.
     """
     raw_df = fdv.read_raw_files(
-        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        global_export_data_dir_name=Path('.').joinpath(
+            'tests', 'test_data', 'extractable_data'
+        ),
         file_prefix='weight-',
         file_suffix='.json',
     )
@@ -24,7 +26,9 @@ def test_date_string_to_date_object_new_column():
     Expects 'date' column to be converted from string to date object.
     """
     raw_df = fdv.read_raw_files(
-        global_export_data_dir_name=Path('.').joinpath('tests', 'test_data', 'extractable_data'),
+        global_export_data_dir_name=Path('.').joinpath(
+            'tests', 'test_data', 'extractable_data'
+        ),
         file_prefix='weight-',
         file_suffix='.json',
     )
