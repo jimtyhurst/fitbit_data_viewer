@@ -33,13 +33,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: ".python-version"
+        python-version-file: ".python-version"
 
     - name: Install Python package dependencies for this app
       run: uv sync --all-extras --dev
 
     - name: Lint
-      run: ruff check --output-format=github .
+      run: uv run ruff check --output-format=github .
 
     - name: Unit tests
       run: uv run pytest -s
