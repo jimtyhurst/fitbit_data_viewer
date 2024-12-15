@@ -10,6 +10,7 @@ This project provides Python modules and scripts for extracting and displaying [
 - [Getting started](#getting-started)
 - [Suggestions for developers](#suggestions-for-developers)
 - [Design decisions](#design-decisions)
+- [Code of Conduct](#code-of-conduct)
 - [License](#license)
 
 ## Overview
@@ -120,6 +121,10 @@ To set up the development environment:
 ## Design decisions
 
 - See the [tools.md](./docs/tools.md) document for a brief discussion of the selection of packages and tools for this project.
+
+## Code of Conduct
+
+See the [Code of Conduct](./CODE_OF_CONDUCT.md) for project participants and contributors.
 
 ## License
 
