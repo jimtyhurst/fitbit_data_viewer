@@ -16,6 +16,8 @@
     # python311Packages.ruff
     pkgs.pre-commit
     pkgs.python311Packages.pre-commit-hooks
+    pkgs.python311Packages.jupyterlab
+    pkgs.python311Packages.ipykernel
   ];
 
   # Sets environment variables in the workspace
