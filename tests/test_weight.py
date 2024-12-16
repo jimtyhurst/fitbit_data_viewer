@@ -16,8 +16,8 @@ def test_date_string_to_date_object_replace_column():
     expected_date = raw_df['date'][0]  # compare first row
     date_formatted_df = fdv.date_string_to_date_object(raw_df)
     actual_date = date_formatted_df['date'][0]
-    print(f'\n{raw_df['date'][0]=}')
-    print(f'{date_formatted_df['date'][0]=}')
+    print(f'\n{raw_df["date"][0]=}')
+    print(f'{date_formatted_df["date"][0]=}')
     assert expected_date == actual_date.strftime(fdv.FITBIT_DATE_FORMAT)
 
 
@@ -38,6 +38,6 @@ def test_date_string_to_date_object_new_column():
         raw_df, string_column_name='date', object_column_name='date_object'
     )
     actual_date = date_formatted_df['date_object'][last_row_index]
-    print(f'\n{raw_df['date'][last_row_index]=}')
-    print(f'{date_formatted_df['date_object'][last_row_index]=}')
+    print(f'\n{raw_df["date"][last_row_index]=}')
+    print(f'{date_formatted_df["date_object"][last_row_index]=}')
     assert expected_date == actual_date.strftime(fdv.FITBIT_DATE_FORMAT)
