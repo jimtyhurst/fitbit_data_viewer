@@ -16,6 +16,7 @@ classifiers = [
 ]
 keywords = ["fitbit", "health", "tracking"]
 dependencies = [
+    "altair>=5.5.0",
     "matplotlib>=3.10.0",
     "polars>=1.17.1",
     "python-dotenv>=1.0.1",
